@@ -25,6 +25,7 @@ twitter: "@yourhandle"
 bluesky: yourname.bsky.social
 blog: https://your-website.com
 huggingface: your-username
+credly: https://www.credly.com/users/your-username/badges
 
 # Frameworks you work with (optional)
 frameworks:
