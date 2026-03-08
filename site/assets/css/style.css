@@ -65,6 +65,8 @@
   }
 }
 
+html { overflow-x: hidden; }
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -1011,8 +1013,20 @@ a:hover {
   .insights-grid {
     grid-template-columns: 1fr;
   }
+  .insights {
+    padding: 1.5rem 1rem 0.5rem;
+  }
+  .insight-card {
+    padding: 1rem;
+  }
+  .hero {
+    padding: 2.5rem 1rem 1.5rem;
+  }
   .hero h1 {
     font-size: 1.75rem;
+  }
+  .hero-tagline {
+    font-size: 0.9rem;
   }
   .hero-stats {
     gap: 1rem;
@@ -1024,10 +1038,27 @@ a:hover {
   .card-grid {
     grid-template-columns: 1fr;
   }
+  .card {
+    padding: 1rem;
+  }
+  .chip {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+  }
+  .filters {
+    padding: 1rem;
+  }
   .profile-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  .profile-name {
+    font-size: 1.35rem;
   }
   .profile-socials {
     justify-content: center;
@@ -1038,8 +1069,18 @@ a:hover {
   .profile-lower {
     grid-template-columns: 1fr;
   }
+  .profile-cta {
+    padding: 1.25rem;
+  }
   .nav-inner {
-    flex-direction: column;
+    padding: 0.75rem 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    display: none;
+  }
+  .nav-links {
     gap: 0.75rem;
   }
   .form-row {
@@ -1050,5 +1091,18 @@ a:hover {
   }
   .step-indicator .step {
     font-size: 0.7rem;
+  }
+}
+@media (max-width: 400px) {
+  .step-indicator {
+    gap: 0.25rem;
+  }
+  .step-indicator .step {
+    font-size: 0;
+    padding: 0.5rem 0.25rem;
+  }
+  .step-indicator .step .step-num {
+    font-size: 0.7rem;
+    margin-right: 0;
   }
 }
