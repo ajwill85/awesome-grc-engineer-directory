@@ -23,6 +23,18 @@ permalink: /index.html
   </div>
 </section>
 
+{% include "partials/filter-bar.njk" %}
+
+<section class="directory">
+  <p class="results-count"><span id="results-count">{{ collections.engineers.length }}</span> engineers</p>
+  <div class="card-grid">
+    {% for engineer in collections.engineers %}
+      {% include "partials/engineer-card.njk" %}
+    {% endfor %}
+  </div>
+  <p id="no-results" class="no-results" style="display:none">No engineers match your filters.</p>
+</section>
+
 <section class="insights">
   <h2>Community Insights</h2>
   <div class="insights-grid">
@@ -53,18 +65,6 @@ permalink: /index.html
   "languages": {{ collections.engineers | countValues("languages") | dump | safe }}
 }
 </script>
-
-{% include "partials/filter-bar.njk" %}
-
-<section class="directory">
-  <p class="results-count"><span id="results-count">{{ collections.engineers.length }}</span> engineers</p>
-  <div class="card-grid">
-    {% for engineer in collections.engineers %}
-      {% include "partials/engineer-card.njk" %}
-    {% endfor %}
-  </div>
-  <p id="no-results" class="no-results" style="display:none">No engineers match your filters.</p>
-</section>
 
 <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>

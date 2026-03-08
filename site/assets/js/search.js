@@ -5,6 +5,8 @@
   var clearBtn = document.getElementById("clear-filters");
   var countEl = document.getElementById("results-count");
   var noResults = document.getElementById("no-results");
+  var summaryEl = document.getElementById("active-filters-summary");
+  var pillsEl = document.getElementById("active-filter-pills");
 
   var FILTER_KEYS = ["specializations", "frameworks", "languages", "available", "certifications"];
   var activeFilters = {};
@@ -37,7 +39,6 @@
 
   function hideCard(card) {
     if (card.classList.contains("hidden")) return;
-    // Clear any pending show timer
     if (pendingTimers.has(card)) {
       clearTimeout(pendingTimers.get(card));
       pendingTimers.delete(card);
@@ -52,13 +53,11 @@
 
   function showCard(card) {
     if (!card.classList.contains("hidden") && !card.classList.contains("fading")) return;
-    // Clear any pending hide timer
     if (pendingTimers.has(card)) {
       clearTimeout(pendingTimers.get(card));
       pendingTimers.delete(card);
     }
     card.classList.remove("hidden");
-    // Force reflow so the transition triggers
     void card.offsetHeight;
     card.classList.remove("fading");
   }
@@ -91,10 +90,68 @@
     if (countEl) countEl.textContent = visible;
     if (noResults) noResults.style.display = visible === 0 ? "" : "none";
 
-    var hasActive = query.length > 0 || FILTER_KEYS.some(function (k) { return activeFilters[k].length > 0; });
-    if (clearBtn) clearBtn.style.display = hasActive ? "" : "none";
-
     if (!_skipUrlSync) syncFiltersToUrl();
+    updateSummary();
+    updateBadgeCounts();
+  }
+
+  /* --- Collapsible filter groups --- */
+  var groupHeaders = Array.from(document.querySelectorAll(".filter-group-header"));
+  groupHeaders.forEach(function (header) {
+    header.addEventListener("click", function () {
+      var group = header.closest(".filter-group");
+      var isOpen = group.classList.toggle("open");
+      header.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  });
+
+  /* --- Active filter summary --- */
+  function updateSummary() {
+    if (!summaryEl || !pillsEl) return;
+    var pills = [];
+    FILTER_KEYS.forEach(function (key) {
+      activeFilters[key].forEach(function (val) {
+        // Find chip to get display text
+        var chip = document.querySelector('[data-filter="' + key + '"] .chip[data-value="' + val + '"]');
+        var label = chip ? chip.textContent : val;
+        pills.push({ key: key, value: val, label: label });
+      });
+    });
+
+    var hasActive = pills.length > 0;
+    summaryEl.style.display = hasActive ? "" : "none";
+
+    pillsEl.innerHTML = "";
+    pills.forEach(function (p) {
+      var btn = document.createElement("button");
+      btn.className = "active-filter-pill";
+      btn.innerHTML = p.label + ' <span class="pill-x">\u00d7</span>';
+      btn.addEventListener("click", function () {
+        // Deselect the corresponding chip
+        var chip = document.querySelector('[data-filter="' + p.key + '"] .chip[data-value="' + p.value + '"]');
+        if (chip) {
+          chip.classList.remove("active");
+          chip.setAttribute("aria-pressed", "false");
+        }
+        var idx = activeFilters[p.key].indexOf(p.value);
+        if (idx !== -1) activeFilters[p.key].splice(idx, 1);
+        updateCards();
+      });
+      pillsEl.appendChild(btn);
+    });
+  }
+
+  /* --- Badge counts on group headers --- */
+  function updateBadgeCounts() {
+    FILTER_KEYS.forEach(function (key) {
+      var group = document.querySelector('.filter-group[data-group="' + key + '"]');
+      if (!group) return;
+      var badge = group.querySelector(".count-badge");
+      if (!badge) return;
+      var count = activeFilters[key].length;
+      badge.textContent = count;
+      badge.style.display = count > 0 ? "" : "none";
+    });
   }
 
   /* --- URL-based filter persistence --- */
@@ -126,6 +183,13 @@
             chip.setAttribute("aria-pressed", "true");
           }
         });
+        // Auto-expand groups that have active filters
+        var group = document.querySelector('.filter-group[data-group="' + key + '"]');
+        if (group && activeFilters[key].length) {
+          group.classList.add("open");
+          var header = group.querySelector(".filter-group-header");
+          if (header) header.setAttribute("aria-expanded", "true");
+        }
       }
     });
     _skipUrlSync = true;
