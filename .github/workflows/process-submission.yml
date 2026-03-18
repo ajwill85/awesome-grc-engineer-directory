@@ -64,6 +64,29 @@ jobs:
             const nameMatch = content.match(/^name:\s*"([^"]+)"/m);
             const profileName = nameMatch ? nameMatch[1] : username;
 
+            // --- Reject placeholder/template submissions ---
+            const placeholders = [
+              'your-github-username',
+              'Your Full Name',
+              'YOUR-GITHUB-USERNAME',
+            ];
+            if (placeholders.includes(username) || placeholders.includes(profileName)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '❌ This submission still contains placeholder values from the template. Please fill in your actual name and GitHub username, then resubmit using the [submission form](https://directory.grcengclub.com/submit/).'
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'not_planned'
+              });
+              return;
+            }
+
             const filename = `engineers/${username}.md`;
 
             // --- Label the issue for bookkeeping ---
