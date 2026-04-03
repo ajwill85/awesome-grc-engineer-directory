@@ -28,13 +28,6 @@
   <p class="card-location">{{ engineer.data.location }}</p>
   {% endif %}
 
-  {% if engineer.data.certifications and engineer.data.certifications.length %}
-  <div class="card-tags">
-    {% for c in engineer.data.certifications %}{% if loop.index0 < 4 %}<span class="tag tag-cert">{{ c }}</span>{% endif %}{% endfor %}
-    {% if engineer.data.certifications.length > 4 %}<span class="tag tag-cert">+{{ engineer.data.certifications.length - 4 }} more</span>{% endif %}
-  </div>
-  {% endif %}
-
   {% if engineer.data.frameworks and engineer.data.frameworks.length %}
   <div class="card-tags">
     {% for f in engineer.data.frameworks %}{% if loop.index0 < 4 %}<span class="tag tag-outline">{{ f }}</span>{% endif %}{% endfor %}
