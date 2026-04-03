@@ -42,6 +42,7 @@ A community-driven directory of Governance, Risk, and Compliance (GRC) engineers
 | **[Nelson Rosario](engineers/nelsonrosario89.md)** | Audit & Assurance, Cloud Security, Compliance Automation, Identity & Access Management, Risk Management, Security Governance | ISO 27001, ISO 42001, NIST 800-53, PCI-DSS, SOC 2 | [GitHub](https://github.com/nelsonrosario89), [LinkedIn](https://www.linkedin.com/in/nelson-rosario-16b99684/) |
 | **[Brian Montiel](engineers/networkbm.md)** | Cloud Security, Compliance Automation, Offensive Security | SOC 2, FedRAMP, GovRAMP, NIST 800-53 | [GitHub](https://github.com/networkbm), [LinkedIn](https://www.linkedin.com/in/brian-montiel-95b38b239/), [Website](https://brianmontiel.netlify.app/) |
 | **[Robert E. Wiley Jr.](engineers/robertwiley-grc.md)** | Risk Management, Security Governance, Third-Party Risk | CJIS, CMMC, FedRAMP, GovRAMP, IRS Pub 1075, ISO 27001, ISO 42001, NIST 800-53, NIST 800-171, NIST AI RMF, NIST CSF, NIST RMF, StateRAMP | [GitHub](https://github.com/robertwiley-grc) |
+| **[Jeffrey Collins](engineers/securedbyjc.md)** | Audit & Assurance, Cloud Security, Compliance Automation, Incident Response, Privacy, Risk Management, Security Architecture, Security Governance, Security Operations, Third-Party Risk, AI Governance, Cloud Governance | CMMC, EU AI Act, FedRAMP, GDPR, ISO 27001, ISO 42001, NIST 800-53, NIST 800-171, NIST AI RMF, NIST CSF, NIST RMF | [GitHub](https://github.com/securedbyjc), [LinkedIn](https://linkedin.com/in/securedbyjc) |
 <!-- END_ENGINEER_LIST -->
 
 ## Add Yourself
