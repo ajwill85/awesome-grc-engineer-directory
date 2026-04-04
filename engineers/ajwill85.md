@@ -4,6 +4,7 @@ name: Akeem Williams
 github: ajwill85
 specializations:
   - GRC Engineering
+  - AI Governance
   - Compliance Automation
   - Cloud Security
   - Risk Management
@@ -12,15 +13,16 @@ specializations:
   - Privacy
 
 # OPTIONAL FIELDS - Remove or leave blank if not applicable
-title: GRC Engineer & ISO Lead Auditor
-company: Human Risk Intelligence
-location: Fresno, CA; Fort Myers, FL;
+title: Sr. AI Information Security Analyst
+company: Invoca
+location: Remote, US
 
 # Social Links (optional)
 portfolio: https://ajwill.ai/
 
 # Frameworks you work with (optional)
 frameworks:
+  - ISO 42001
   - ISO 27001
   - SOC 2
   - PCI-DSS
@@ -30,7 +32,6 @@ frameworks:
   - GDPR
   - CCPA
   - HIPAA
-  - ISO 42001
   - NIST AI RMF
   - EU AI Act
 
@@ -43,7 +44,9 @@ certifications:
   - TAISE
   - AWS Certified Cloud Practitioner
   - SSAP
-  - See portfolio link for more
+  - GSLC
+  - OneTrust Fellow of Privacy Technology
+  - Verified Vanta Admin
 
 
 # What you're available for (optional)
@@ -52,6 +55,7 @@ available_for:
   - Freelance
   - Consulting
   - Collaboration
+  - Hiring
 
 # Notable projects (optional)
 projects:
@@ -62,6 +66,10 @@ projects:
   - name: GRC AI Governance Serverless Platform
     url: https://github.com/ajwill85/grc-ai-governance-serverless
     description: Serverless version of GRC AI Governance Framework
+
+  - name: Human Risk Intelligence News Aggregator
+    url: https://humanriskintelligence.com/
+    description: React-based cybersecurity news aggregator with real-time updates from trusted sources.
 ---
 
 ## About Me
